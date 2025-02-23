@@ -22,8 +22,6 @@ Future Enhancements
 
 Project Overview
 
-ThinkFast AI is an interactive quiz game that tests players' knowledge about Artificial Intelligence (AI). Players answer multiple-choice questions, and their results are tracked with win/loss logic.
-
 Features
 
 Interactive quiz rendered dynamically using DOM manipulation.
@@ -38,7 +36,7 @@ Deployed online for public access.
 
 Game Rules
 
-The game presents a series of multiple-choice AI-related questions.
+The game presents a series of multiple-choice
 
 Players select an answer from four choices.
 
@@ -100,7 +98,7 @@ Future Enhancements
 
 Add a timer for each question.
 
-Include sound effects for correct/incorrect answers.
+Add AI generator
 
 Implement difficulty levels.
 

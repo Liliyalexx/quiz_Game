@@ -91,15 +91,19 @@ const questions = [
         ]        
     }
 ];
-/*------------------------ Cached Element References ------------------------*/
 
+
+
+/*------------------------ Cached Element References ------------------------*/
+const timerBar = document.querySelector('.timer-bar');
+const character = document.querySelector('.character');
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer");
 const nextButton = document.getElementById("next-btn");
  
 let currentQuestionIndex = 0;
 let score = 0;
-
+let timer;
 
 /*-------------------------------- Functions --------------------------------*/
 function startQuiz(){
@@ -125,8 +129,22 @@ function showQuestion(){
         }
         button.addEventListener("click", selectAnswer);
     });
+
+    startTimer();
 }
 
+function startTimer() {
+    character.style.animation = 'moveCharacter 20m liner forwars';
+    timer = setTimeOut(() => {
+        handleTimeOut();
+    }, 10000000);
+}
+
+function handleTimeOut() {
+    wrongSound();
+    disableAllButtons();
+    nextButton.style.display = "Block";
+}
 
 function resetState(){
     nextButton.style.display = "none";
