@@ -1,81 +1,31 @@
-Montserrat Variable Font
-========================
+# Quiz Game with Dynamic Animal Character Timer
 
-This download contains Montserrat as both variable fonts and static fonts.
+Welcome to the **Quiz Game with Dynamic Animal Character Timer**! This is a fun and interactive quiz game where users can answer questions while a chosen animal character moves across the screen as a timer. If the user answers in time, they hear a winning sound; if the timer runs out, they hear a losing sound.
 
-Montserrat is a variable font with this axis:
-  wght
+## Features
 
-This means all the styles are contained in these files:
-  Montserrat-VariableFont_wght.ttf
-  Montserrat-Italic-VariableFont_wght.ttf
+- **Dynamic Animal Character Selection**: Users can choose their favorite animal character before starting the quiz.
+- **Timer Bar with Moving Character**: The selected animal moves across the screen as a timer for each question.
+- **Sound Effects**: Play winning or losing sounds based on user actions.
+- **Interactive Quiz**: Answer multiple-choice questions and see your score at the end.
+- **Responsive Design**: Works on both desktop and mobile devices.
 
-If your app fully supports variable fonts, you can now pick intermediate styles
-that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Montserrat:
-  static/Montserrat-Thin.ttf
-  static/Montserrat-ExtraLight.ttf
-  static/Montserrat-Light.ttf
-  static/Montserrat-Regular.ttf
-  static/Montserrat-Medium.ttf
-  static/Montserrat-SemiBold.ttf
-  static/Montserrat-Bold.ttf
-  static/Montserrat-ExtraBold.ttf
-  static/Montserrat-Black.ttf
-  static/Montserrat-ThinItalic.ttf
-  static/Montserrat-ExtraLightItalic.ttf
-  static/Montserrat-LightItalic.ttf
-  static/Montserrat-Italic.ttf
-  static/Montserrat-MediumItalic.ttf
-  static/Montserrat-SemiBoldItalic.ttf
-  static/Montserrat-BoldItalic.ttf
-  static/Montserrat-ExtraBoldItalic.ttf
-  static/Montserrat-BlackItalic.ttf
+## Demo
 
-Get started
------------
+![Quiz Game Demo](https://example.com/quiz-game-demo.gif)  
+*Replace this with a link to your demo GIF or video.*
 
-1. Install the font files you want to use
+## Technologies Used
 
-2. Use your app's font picker to view the font family and all the
-available styles
+- **HTML**: Structure of the quiz game.
+- **CSS**: Styling and animations for the timer bar and character.
+- **JavaScript**: Logic for the quiz, timer, and dynamic character selection.
+- **Google Fonts**: Custom font for the quiz.
 
-Learn more about variable fonts
--------------------------------
+## How to Use
 
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
+### 1. Clone the Repository
 
-In desktop apps
-
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
-
-Online
-
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
-
-Installing fonts
-
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
-
-Android Apps
-
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
-
-License
--------
-Please read the full license text (OFL.txt) to understand the permissions,
-restrictions and requirements for usage, redistribution, and modification.
-
-You can use them in your products & projects – print or digital,
-commercial or otherwise.
-
-This isn't legal advice, please consider consulting a lawyer and see the full
-license for all details.
+```bash
+git clone https://github.com/your-username/quiz-game.git
+cd quiz-game
