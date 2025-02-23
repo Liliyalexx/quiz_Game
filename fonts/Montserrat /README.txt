@@ -1,81 +1,73 @@
-Montserrat Variable Font
-========================
+# Quiz Game: ThinkFast AI
 
-This download contains Montserrat as both variable fonts and static fonts.
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Game Rules](#game-rules)
+- [Installation and Setup](#installation-and-setup)
+- [Technologies Used](#technologies-used)
+- [File Structure](#file-structure)
+- [Deployment](#deployment)
+- [Git and GitHub](#git-and-github)
+- [Future Enhancements](#future-enhancements)
 
-Montserrat is a variable font with this axis:
-  wght
+## Project Overview
+ThinkFast AI is an interactive quiz game that provides multiple-choice questions to players. The game is dynamically rendered using DOM manipulation. It keeps track of correct and incorrect answers, providing feedback on the user's performance.
 
-This means all the styles are contained in these files:
-  Montserrat-VariableFont_wght.ttf
-  Montserrat-Italic-VariableFont_wght.ttf
+## Features
+- Interactive quiz rendered dynamically using JavaScript.
+- Correct and incorrect answers are color-coded: green for correct and red for incorrect.
+- Responsive design using CSS Flexbox and Grid to ensure it works across various screen sizes.
+- Separate HTML, CSS, and JavaScript files for a clean and organized structure.
+- The game is deployed online, so it’s publicly accessible.
 
-If your app fully supports variable fonts, you can now pick intermediate styles
-that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Montserrat:
-  static/Montserrat-Thin.ttf
-  static/Montserrat-ExtraLight.ttf
-  static/Montserrat-Light.ttf
-  static/Montserrat-Regular.ttf
-  static/Montserrat-Medium.ttf
-  static/Montserrat-SemiBold.ttf
-  static/Montserrat-Bold.ttf
-  static/Montserrat-ExtraBold.ttf
-  static/Montserrat-Black.ttf
-  static/Montserrat-ThinItalic.ttf
-  static/Montserrat-ExtraLightItalic.ttf
-  static/Montserrat-LightItalic.ttf
-  static/Montserrat-Italic.ttf
-  static/Montserrat-MediumItalic.ttf
-  static/Montserrat-SemiBoldItalic.ttf
-  static/Montserrat-BoldItalic.ttf
-  static/Montserrat-ExtraBoldItalic.ttf
-  static/Montserrat-BlackItalic.ttf
+## Game Rules
+- The game presents a series of multiple-choice questions.
+- Players must select an answer from four choices for each question.
+- Correct answers will turn **green**, and incorrect answers will turn **red**.
+- Players can proceed to the next question using a "Next" button.
+- The game ends when all questions have been answered, and the final score is displayed.
 
-Get started
------------
+## Installation and Setup
+To set up and play the game locally:
 
-1. Install the font files you want to use
+1. **Clone the repository** from GitHub:
+   ```bash
+   git clone https://github.com/Liliyalexx/quiz_Game
 
-2. Use your app's font picker to view the font family and all the
-available styles
+   Open the index.html file in a web browser to start playing the game.
 
-Learn more about variable fonts
--------------------------------
+Technologies Used
+HTML for structuring the content.
+CSS for styling and layout (using Flexbox and Grid for responsiveness).
+JavaScript (ES6+) for the game logic and dynamic rendering.
+Bootstrap for additional styling and responsive features.
+Google Fonts for custom fonts used in the UI.
+File Structure
+The project follows a well-organized structure:
 
-  https://developers.google.com/web/fundamentals/design-and-ux/typography/variable-fonts
-  https://variablefonts.typenetwork.com
-  https://medium.com/variable-fonts
+graphql
+Copy
+Edit
+thinkfast-ai/
+│── css/
+│   ├── style.css       # Main CSS file for styling
+│── js/
+│   ├── app.js          # JavaScript file with game logic
+│── fonts/               # Folder containing font files
+│── sounds/              # Folder containing sound assets
+│── index.html           # The main HTML file for the game
+│── README.md            # Project documentation
+Deployment
+The game is deployed and can be accessed at:
+[Your Deployed URL]
 
-In desktop apps
-
-  https://theblog.adobe.com/can-variable-fonts-illustrator-cc
-  https://helpx.adobe.com/nz/photoshop/using/fonts.html#variable_fonts
-
-Online
-
-  https://developers.google.com/fonts/docs/getting_started
-  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide
-  https://developer.microsoft.com/en-us/microsoft-edge/testdrive/demos/variable-fonts
-
-Installing fonts
-
-  MacOS: https://support.apple.com/en-us/HT201749
-  Linux: https://www.google.com/search?q=how+to+install+a+font+on+gnu%2Blinux
-  Windows: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
-
-Android Apps
-
-  https://developers.google.com/fonts/docs/android
-  https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts
-
-License
--------
-Please read the full license text (OFL.txt) to understand the permissions,
-restrictions and requirements for usage, redistribution, and modification.
-
-You can use them in your products & projects – print or digital,
-commercial or otherwise.
-
-This isn't legal advice, please consider consulting a lawyer and see the full
-license for all details.
+Git and GitHub
+The project is hosted on GitHub with frequent commits and updates.
+Commit messages are descriptive and meaningful, following best practices.
+The repository name follows standard naming conventions for clarity.
+Future Enhancements
+Add a timer for each question to increase game difficulty.
+Integrate an AI generator to create quiz questions dynamically.
+Implement difficulty levels (easy, medium, hard) to tailor the game for various skill levels.
+Save high scores using local storage so players can track their progress over time.
