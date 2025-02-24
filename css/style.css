@@ -171,3 +171,32 @@ body{
 h1{
   color: #fff;
 }
+
+/* AI */
+#quiz-controls {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#topic-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #d87c04;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#generate-question-btn {
+  background: #d87c04;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#generate-question-btn:hover {
+  background: #c56a00;
+}
