@@ -83,11 +83,15 @@ async function fetchQuestions(topic) {
     
 }
 function startTimer() {
-    character.style.animation = 'moveCharacter 3m liner forwars';
+    character.style.animation = 'none';
+    void character.offsetWidth;
+    character.style.animation = 'moveCharacter 20s linear forwards';
+
     timer = setTimeout(() => {
         handleTimeOut();
-    }, 0);
+    }, 2000);
 }
+
 // Helper function to get the category ID from the category name
 function getCategoryId(category) {
     const categoryMap = {
@@ -134,13 +138,12 @@ function startQuiz() {
     score = 0;
     nextButton.innerHTML = "Next";
     showQuestion();
-    startTimer();
 
 }
 
-
 function showQuestion(){
     resetState();
+    startTimer()
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -159,7 +162,6 @@ function showQuestion(){
         button.addEventListener("click", selectAnswer);
     });
 
-
 }
 
 function shuffleArray(array) {
@@ -172,12 +174,13 @@ function shuffleArray(array) {
 
 
 function handleTimeOut() {
-    wrongSound();
     disableAllButtons();
     nextButton.style.display = "Block";
 }
 
 function resetState(){
+    clearTimeout(timer);
+    character.style.animation = 'none';
     nextButton.style.display = "none";
     while(answerButtons.firstChild){
         answerButtons.removeChild(answerButtons.firstChild);
@@ -221,7 +224,7 @@ function showScore(){
     resetState();
     let userScore = `You scored ${score} out of ${questions.length}.`;
     questionElement.innerHTML = userScore;
-    questionElement.style.textAlign = "center"; // Align the text at the center
+    questionElement.style.textAlign = "center"; 
     nextButton.innerHTML = "Play Again?";
     nextButton.style.display = "block";
     
@@ -262,15 +265,12 @@ generateQuestionButton.addEventListener("click", generateAndAddQuestions);
 
 // Event Listener for Start Quiz Button
 startQuizButton.addEventListener("click", () => {
-    // Hide character selection screen
-    characterSelection.style.display = "none";
-    // Show quiz board
     board.style.display = "block";
-    // Set the selected character
     characterElement.textContent = selectedCharacter;
     // Start the quiz
     startQuiz();
 });
+
 
 
 startQuiz();
