@@ -1,7 +1,16 @@
 /*-------------------------------- Constants --------------------------------*/
-
+const topicToCategory = {
+    "AI": "Science: Computers",
+    "History": "History",
+    "Science": "Science & Nature",
+    "Geography": "Geography",
+    "Art": "Art",
+    "Sports": "Sports",
+    // Add more mappings as needed
+  };
 
 /*------------------------ Cached Element References ------------------------*/
+const messageContainer = document.getElementById("message-container");
 const timerBar = document.querySelector('.timer-bar');
 const character = document.querySelector('.character');
 const questionElement = document.getElementById("question");
@@ -21,11 +30,24 @@ let score = 0;
 let timer;
 let selectedCharacter = "🐶"; // Default character
 /*-------------------------------- Functions --------------------------------*/
+// Display a message in the message container
+function showMessage(message) {
+    messageContainer.textContent = message;
+    setTimeout(() => {
+        messageContainer.textContent = ""; // Clear the message after 3 seconds
+    }, 10000);
+}
 
 // Fetch AI-generated question
 async function fetchQuestions(topic) {
     try {
-        const response = await fetch('https://opentdb.com/api.php?amount=10');
+
+         // Map the user's topic to the API category
+         const category = topicToCategory[topic];
+         if (!category) {
+             throw new Error("Invalid topic selected.");
+         }
+        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${getCategoryId(category)}`);
         if (!response.ok) {
             throw new Error(`Failed to fetch question: ${response.statusText}`);
         }
@@ -34,7 +56,11 @@ async function fetchQuestions(topic) {
         if (data.response_code !== 0) {
             throw new Error("Failed to fetch questions: API returned an error");
         }
+        const filteredQuestions = data.results.filter((question) => question.category === category);
 
+        if (filteredQuestions.length === 0) {
+            throw new Error(`No questions found for the topic: ${topic}`);
+        }
         // Format the questions for your quiz
         const formattedQuestions = data.results.map((questionData) => {
             return {
@@ -49,17 +75,40 @@ async function fetchQuestions(topic) {
     return formattedQuestions;
     } catch (error) {
         console.error("Error fetching question:", error);
-        alert("Failed to fetch question. Please try again.");
+        showMessage("Failed to fetch question. Please try again.");
         return null;
     }
+    
+    
+}
+function startTimer() {
+    character.style.animation = 'moveCharacter 3m liner forwars';
+    timer = setTimeout(() => {
+        handleTimeOut();
+    }, 0);
+}
+// Helper function to get the category ID from the category name
+function getCategoryId(category) {
+    const categoryMap = {
+        "Science: Computers": 18,
+        "History": 23,
+        "Science & Nature": 17,
+        "Geography": 22,
+        "Art": 25,
+        "Sports": 21,
+ 
+    };
+    return categoryMap[category] || 9;
+    
 }
 
-
 // Generate 10 new questions and start the quiz
+let isFetching = false; // Flag to prevent multiple simultaneous requests
+
 async function generateAndAddQuestions() {
     const topic = topicInput.value.trim();
     if (!topic) {
-        alert("Please enter a topic");
+        showMessage("Please enter a topic");
         return;
     }
 
@@ -68,18 +117,26 @@ async function generateAndAddQuestions() {
         questions = newQuestions; 
         startQuiz(); 
     }
+    // Add a delay before allowing another request
+    setTimeout(() => {
+        isFetching = false;
+    }, 5000); // 5-second delay
 }
+
 
 function startQuiz() {
     if (questions.length === 0) {
-        alert("No questions available. Please generate questions first.");
+        showMessage("No questions available. Please generate questions first.");
         return;
     }
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
     showQuestion();
+    startTimer();
+
 }
+
 
 function showQuestion(){
     resetState();
@@ -101,7 +158,7 @@ function showQuestion(){
         button.addEventListener("click", selectAnswer);
     });
 
-    startTimer();
+
 }
 
 function shuffleArray(array) {
@@ -111,12 +168,7 @@ function shuffleArray(array) {
     }
     return array;
 }
-function startTimer() {
-    character.style.animation = 'moveCharacter 20m liner forwars';
-    timer = setTimeOut(() => {
-        handleTimeOut();
-    }, 10000000);
-}
+
 
 function handleTimeOut() {
     wrongSound();

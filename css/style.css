@@ -11,7 +11,7 @@
 
 body{
   /* background: #E0F7FA; */
-    background-image: url('many-falling-blocks-with-question-marks-3d-illustration_75780-204.jpg'); /* If style.css and image are in the same folder */
+    background-image: url('many-falling-blocks-with-question-marks-3d-illustration_75780-204.jpg'); 
     background-size: cover; 
     background-repeat:no-repeat; 
     
@@ -106,7 +106,7 @@ body{
   bottom: 0.1;
   left: 0;
   border-radius: 20%;
-  animation: moveCharacter 1200s linear forwards;
+  animation: moveCharacter 120s linear forwards;
 }
 
 @keyframes moveCharacter {
@@ -164,12 +164,15 @@ body{
  img {
   vertical-align: middle;
   border-style: none;
-  height: 100px; /* Set height */
-  width: 100px; /* Set width */
-  object-fit: cover; /* Ensures the image covers the set width and height without stretching */
+  height: 100px; 
+  width: 100px; 
+  object-fit: cover; 
 }
 h1{
   color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
 }
 
 /* AI */
