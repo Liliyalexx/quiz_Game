@@ -1,97 +1,4 @@
 /*-------------------------------- Constants --------------------------------*/
-// const questions = [
-//     {
-//         question: "Who is considered the father of Artificial Intelligence?",
-//         answers: [
-//             {text: "Alan Turing", correct: false},
-//             {text: "John McCarthy", correct: true},
-//             {text: "Elon Musk", correct: false},
-//             {text: "Geoffrey Hinton", correct: false},
-//         ]
-//     },
-//     {
-//         question: "What does AI stand for?",
-//         answers: [
-//             {text: "Automated Intelligence", correct: false},
-//             {text: "Artificial Innovation", correct: false},
-//             {text: "Artificial Intelligence", correct: true},
-//             {text: "Automated Interaction", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "Which type of AI is capable of performing a specific task but lacks general intelligence?",
-//         answers: [
-//             {text: "Artificial General Intelligence (AGI)", correct: false},
-//             {text: "Artificial Super Intelligence (ASI)", correct: false},
-//             {text: "Narrow AI (ANI)", correct: true},
-//             {text: "Strong AI", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "Which AI model is commonly used for natural language processing?",
-//         answers: [
-//             {text: "Convolutional Neural Network (CNN)", correct: false},
-//             {text: "Recurrent Neural Network (RNN)", correct: false},
-//             {text: "Transformer Model", correct: true},
-//             {text: "Decision Tree", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "What is the name of the AI that defeated a world champion in the board game Go?",
-//         answers: [
-//             {text: "DeepMind AI", correct: false},
-//             {text: "AlphaGo", correct: true},
-//             {text: "OpenAI Five", correct: false},
-//             {text: "IBM Watson", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "Which company created the GPT (Generative Pre-trained Transformer) series of AI models?",
-//         answers: [
-//             {text: "Google", correct: false},
-//             {text: "OpenAI", correct: true},
-//             {text: "Microsoft", correct: false},
-//             {text: "IBM", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "Which AI approach mimics the way the human brain processes information?",
-//         answers: [
-//             {text: "Rule-Based Systems", correct: false},
-//             {text: "Neural Networks", correct: true},
-//             {text: "Expert Systems", correct: false},
-//             {text: "Genetic Algorithms", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "Which term describes AI systems that improve performance over time by learning from data?",
-//         answers: [
-//             {text: "Deep Learning", correct: false},
-//             {text: "Reinforcement Learning", correct: false},
-//             {text: "Machine Learning", correct: true},
-//             {text: "Expert Systems", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "Which AI algorithm is commonly used for image recognition?",
-//         answers: [
-//             {text: "Random Forest", correct: false},
-//             {text: "K-Means Clustering", correct: false},
-//             {text: "Convolutional Neural Networks (CNNs)", correct: true},
-//             {text: "Support Vector Machines (SVMs)", correct: false},
-//         ]        
-//     },
-//     {
-//         question: "Which of the following is a major ethical concern regarding AI?",
-//         answers: [
-//             {text: "Too much automation", correct: false},
-//             {text: "Bias in decision-making", correct: true},
-//             {text: "High electricity usage", correct: false},
-//             {text: "Slow processing speed", correct: false},
-//         ]        
-//     }
-// ];
-
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -116,28 +23,30 @@ let selectedCharacter = "🐶"; // Default character
 /*-------------------------------- Functions --------------------------------*/
 
 // Fetch AI-generated question
-async function fetchQuestion(topic) {
+async function fetchQuestions(topic) {
     try {
-        const response = await fetch("http://localhost:5501/generate-question", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ topic }),
-        });
-
+        const response = await fetch('https://opentdb.com/api.php?amount=10');
         if (!response.ok) {
             throw new Error(`Failed to fetch question: ${response.statusText}`);
         }
 
         const data = await response.json();
-        return {
-            question: data.question,
-            answers: data.options.map((option, index) => ({
-                text: option,
-                correct: index === data.options.indexOf(data.correctAnswer),
-            })),
-        };
+        if (data.response_code !== 0) {
+            throw new Error("Failed to fetch questions: API returned an error");
+        }
+
+        // Format the questions for your quiz
+        const formattedQuestions = data.results.map((questionData) => {
+            return {
+                question: questionData.question,
+                answers: [
+                    { text: questionData.correct_answer, correct: true },
+                    ...questionData.incorrect_answers.map((answer) => ({ text: answer, correct: false })),
+                ],
+            };
+        });
+
+    return formattedQuestions;
     } catch (error) {
         console.error("Error fetching question:", error);
         alert("Failed to fetch question. Please try again.");
@@ -145,18 +54,19 @@ async function fetchQuestion(topic) {
     }
 }
 
-// Generate a new question and add it to the quiz
-async function generateAndAddQuestion() {
+
+// Generate 10 new questions and start the quiz
+async function generateAndAddQuestions() {
     const topic = topicInput.value.trim();
     if (!topic) {
         alert("Please enter a topic");
         return;
     }
 
-    const newQuestion = await fetchQuestion(topic);
-    if (newQuestion) {
-        questions.push(newQuestion);
-        showQuestion();
+    const newQuestions = await fetchQuestions(topic);
+    if (newQuestions) {
+        questions = newQuestions; 
+        startQuiz(); 
     }
 }
 
@@ -177,12 +87,15 @@ function showQuestion(){
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    currentQuestion.answers.forEach(answer => {
+    // Shuffle the answers to randomize their order
+    const shuffledAnswers = shuffleArray(currentQuestion.answers);
+
+    shuffledAnswers.forEach((answer) => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
-        if(answer.correct){
+        if (answer.correct) {
             button.dataset.correct = answer.correct;
         }
         button.addEventListener("click", selectAnswer);
@@ -191,6 +104,13 @@ function showQuestion(){
     startTimer();
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 function startTimer() {
     character.style.animation = 'moveCharacter 20m liner forwars';
     timer = setTimeOut(() => {
@@ -285,7 +205,7 @@ animalOptions.forEach(option => {
 });
 
 //AI
-generateQuestionButton.addEventListener("click", generateAndAddQuestion);
+generateQuestionButton.addEventListener("click", generateAndAddQuestions);
 
 // Event Listener for Start Quiz Button
 startQuizButton.addEventListener("click", () => {
