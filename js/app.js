@@ -6,7 +6,8 @@ const topicToCategory = {
     "Geography": "Geography",
     "Art": "Art",
     "Sports": "Sports",
-    // Add more mappings as needed
+    "Animals": "Animals", 
+    "Biology":"Biology"
   };
 
 /*------------------------ Cached Element References ------------------------*/
