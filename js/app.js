@@ -8,7 +8,7 @@ const topicToCategory = {
     "Sports": "Sports",
     "Animals": "Animals", 
     "Biology":"Biology"
-  };
+};
 
 /*------------------------ Cached Element References ------------------------*/
 const messageContainer = document.getElementById("message-container");
@@ -24,13 +24,16 @@ const board = document.querySelector(".board");
 const characterElement = document.querySelector(".character");
 const topicInput = document.getElementById("topic-input");
 const generateQuestionButton = document.getElementById("generate-question-btn");
- 
+const backgroundMusic = document.getElementById("background-music"); // Background music
+
 let currentQuestionIndex = 0;
 let questions = []; // Store AI-generated questions
 let score = 0;
 let timer;
 let selectedCharacter = "🐶"; // Default character
+
 /*-------------------------------- Functions --------------------------------*/
+
 // Display a message in the message container
 function showMessage(message) {
     messageContainer.textContent = message;
@@ -42,23 +45,20 @@ function showMessage(message) {
 // Fetch AI-generated question
 async function fetchQuestions(topic) {
     try {
-
-         // Map the user's topic to the API category
-         const category = topicToCategory[topic];
-         if (!category) {
-             throw new Error("Invalid topic selected.");
-         }
+        // Map the user's topic to the API category
+        const category = topicToCategory[topic];
+        if (!category) {
+            throw new Error("Invalid topic selected.");
+        }
         const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${getCategoryId(category)}`);
         if (!response.ok) {
             throw new Error(`Failed to fetch question: ${response.statusText}`);
         }
-
         const data = await response.json();
         if (data.response_code !== 0) {
             throw new Error("Failed to fetch questions: API returned an error");
         }
         const filteredQuestions = data.results.filter((question) => question.category === category);
-
         if (filteredQuestions.length === 0) {
             throw new Error(`No questions found for the topic: ${topic}`);
         }
@@ -72,24 +72,12 @@ async function fetchQuestions(topic) {
                 ],
             };
         });
-
-    return formattedQuestions;
+        return formattedQuestions;
     } catch (error) {
         console.error("Error fetching question:", error);
         showMessage("Failed to fetch question. Please try again.");
         return null;
     }
-    
-    
-}
-function startTimer() {
-    character.style.animation = 'none';
-    void character.offsetWidth;
-    character.style.animation = 'moveCharacter 20s linear forwards';
-
-    timer = setTimeout(() => {
-        handleTimeOut();
-    }, 2000);
 }
 
 // Helper function to get the category ID from the category name
@@ -101,10 +89,8 @@ function getCategoryId(category) {
         "Geography": 22,
         "Art": 25,
         "Sports": 21,
- 
     };
-    return categoryMap[category] || 9;
-    
+    return categoryMap[category] || 9; // Default to General Knowledge if category not found
 }
 
 // Generate 10 new questions and start the quiz
@@ -128,7 +114,6 @@ async function generateAndAddQuestions() {
     }, 5000); // 5-second delay
 }
 
-
 function startQuiz() {
     if (questions.length === 0) {
         showMessage("No questions available. Please generate questions first.");
@@ -137,13 +122,13 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
+    backgroundMusic.play(); // Play joyful music
     showQuestion();
-
 }
 
-function showQuestion(){
+function showQuestion() {
     resetState();
-    startTimer()
+    startTimer();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -161,7 +146,6 @@ function showQuestion(){
         }
         button.addEventListener("click", selectAnswer);
     });
-
 }
 
 function shuffleArray(array) {
@@ -172,82 +156,91 @@ function shuffleArray(array) {
     return array;
 }
 
+function startTimer() {
+    character.style.animation = 'none';
+    void character.offsetWidth; // Force reflow to restart animation
+    character.style.animation = 'moveCharacter 20s linear forwards';
 
-function handleTimeOut() {
-    disableAllButtons();
-    nextButton.style.display = "Block";
+    timer = setTimeout(() => {
+        handleTimeOut();
+    }, 20000); // 20 seconds timer
 }
 
-function resetState(){
+function handleTimeOut() {
+    if (questions.length > 0) { // Only play sound if the quiz is active
+        wrongSound();
+        disableAllButtons();
+        nextButton.style.display = "block";
+    }
+}
+
+function resetState() {
     clearTimeout(timer);
     character.style.animation = 'none';
     nextButton.style.display = "none";
-    while(answerButtons.firstChild){
+    while (answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
     }
 }
 
-function dingSound(){
-    let ding = new Audio ('sounds/bright-notifications-151766.mp3');
+function dingSound() {
+    let ding = new Audio('sounds/bright-notifications-151766.mp3');
     ding.play();
 }
 
-function wrongSound(){
-    let wrong = new Audio ('sounds/wrong-answer-21-199825.mp3');
+function wrongSound() {
+    let wrong = new Audio('sounds/wrong-answer-21-199825.mp3');
     wrong.play();
 }
 
-
-function selectAnswer(e){
+function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
-    if(isCorrect){
+    if (isCorrect) {
         dingSound();
-        selectedBtn.classList.add("correct"); 
+        selectedBtn.classList.add("correct");
         score++;
-    }else{
+    } else {
         wrongSound();
         selectedBtn.classList.add("incorrect");
     }
     Array.from(answerButtons.children).forEach(button => {
-        if(button.dataset.correct === "true"){
+        if (button.dataset.correct === "true") {
             button.classList.add("correct");
         }
         button.disabled = true;
     });
     nextButton.style.display = "block";
-
 }
 
-
-function showScore(){
+function showScore() {
     resetState();
     let userScore = `You scored ${score} out of ${questions.length}.`;
     questionElement.innerHTML = userScore;
     questionElement.style.textAlign = "center"; 
     nextButton.innerHTML = "Play Again?";
     nextButton.style.display = "block";
-    
+    backgroundMusic.pause(); // Pause joyful music
 }
 
-
-function handleNextButton(){
+function handleNextButton() {
     currentQuestionIndex++;
-    if(currentQuestionIndex < questions.length){
+    if (currentQuestionIndex < questions.length) {
         showQuestion();
-    }else{
+    } else {
         showScore();
     }
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
-nextButton.addEventListener("click", ()=>{
-    if(currentQuestionIndex < questions.length){
+nextButton.addEventListener("click", () => {
+    if (currentQuestionIndex < questions.length) {
         handleNextButton();
-    }else{
+    } else {
         startQuiz();
     }
 });
+
 // Event Listeners for Animal Selection
 animalOptions.forEach(option => {
     option.addEventListener("click", () => {
@@ -260,7 +253,7 @@ animalOptions.forEach(option => {
     });
 });
 
-//AI
+// Event Listener for Generate Questions Button
 generateQuestionButton.addEventListener("click", generateAndAddQuestions);
 
 // Event Listener for Start Quiz Button
@@ -270,7 +263,3 @@ startQuizButton.addEventListener("click", () => {
     // Start the quiz
     startQuiz();
 });
-
-
-
-startQuiz();
