@@ -27,5 +27,5 @@ Welcome to the **Quiz Game with Dynamic Animal Character Timer**! This is a fun 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-liliyalexx/quiz_Game.git
+git clone https://github.com/your-username/quiz-game.git
 cd quiz-game

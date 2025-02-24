@@ -100,11 +100,16 @@ const character = document.querySelector('.character');
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer");
 const nextButton = document.getElementById("next-btn");
+const characterSelection = document.getElementById("character-selection");
+const animalOptions = document.querySelectorAll(".animal-option");
+const startQuizButton = document.getElementById("start-quiz");
+const board = document.querySelector(".board");
+const characterElement = document.querySelector(".character");
  
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
-
+let selectedCharacter = "🐶"; // Default character
 /*-------------------------------- Functions --------------------------------*/
 function startQuiz(){
     currentQuestionIndex = 0;
@@ -214,6 +219,30 @@ nextButton.addEventListener("click", ()=>{
         startQuiz();
     }
 });
+// Event Listeners for Animal Selection
+animalOptions.forEach(option => {
+    option.addEventListener("click", () => {
+        // Remove selected class from all options
+        animalOptions.forEach(opt => opt.classList.remove("selected"));
+        // Add selected class to the clicked option
+        option.classList.add("selected");
+        // Update the selected character
+        selectedCharacter = option.getAttribute("data-emoji");
+    });
+});
+
+// Event Listener for Start Quiz Button
+startQuizButton.addEventListener("click", () => {
+    // Hide character selection screen
+    characterSelection.style.display = "none";
+    // Show quiz board
+    board.style.display = "block";
+    // Set the selected character
+    characterElement.textContent = selectedCharacter;
+    // Start the quiz
+    startQuiz();
+});
+
 
 
 startQuiz();
