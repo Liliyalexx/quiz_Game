@@ -2,6 +2,8 @@
 
 ![Animated Computer](./images/animals/screenshot.png)
 
+[Quiz Game](https://liliyalexx.github.io/quiz_Game/)
+
 Welcome to the **Quiz Game** project! This is a fun and interactive quiz application that uses AI to generate questions based on user-selected topics. The game includes a timer, character selection, and sound effects to enhance the user experience.
 
 ---
@@ -14,7 +16,6 @@ Welcome to the **Quiz Game** project! This is a fun and interactive quiz applica
 5. [Setup Instructions](#setup-instructions)
 6. [How to Play](#how-to-play)
 7. [API Integration](#api-integration)
-8. [License](#license)
 
 ---
 
