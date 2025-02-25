@@ -1,0 +1,97 @@
+Project Requirements for Quiz Game
+1. Game Choice
+Game Name: Quiz Game
+
+Description: The Quiz Game is an interactive web-based application where users can select a topic, answer AI-generated multiple-choice questions, and track their score. The game includes a timer, character selection, and sound effects for an engaging user experience.
+
+2. Pseudocode for Gameplay
+Below is the pseudocode for the overall gameplay logic:
+
+plaintext
+Copy
+1. Initialize the game:
+   - Load the quiz interface (HTML/CSS).
+   - Set up event listeners for buttons (e.g., "Generate Questions", "Start Quiz", "Next").
+
+2. User selects a topic:
+   - User inputs a topic (e.g., "AI", "History").
+   - Validate the topic and map it to a category using the `topicToCategory` object.
+
+3. Fetch AI-generated questions:
+   - Send a request to the OpenAI API with the selected topic.
+   - Receive a JSON response containing the question, options, and correct answer.
+   - Store the questions in an array.
+
+4. User selects a character:
+   - Display character options (e.g., 🐶, 🐱).
+   - Allow the user to click and select a character.
+
+5. Start the quiz:
+   - Display the first question.
+   - Start a 20-second timer for each question.
+   - Display answer options as buttons.
+
+6. User answers a question:
+   - If the user selects the correct answer:
+     - Play a "ding" sound.
+     - Increment the score.
+   - If the user selects the wrong answer or runs out of time:
+     - Play a "wrong" sound.
+   - Disable all answer buttons after selection.
+
+7. Move to the next question:
+   - Display the next question after a short delay.
+   - Repeat steps 5-6 until all questions are answered.
+
+8. End of quiz:
+   - Display the user's final score.
+   - Allow the user to restart the quiz or choose a new topic.
+
+9. Handle edge cases:
+   - If no questions are available, display an error message.
+   - If the API request fails, retry or notify the user.
+3. Additional Planning Requirements
+a. API Integration
+The game integrates with the OpenAI API to dynamically generate quiz questions.
+
+Ensure the API key is securely stored in a .env file and not exposed in the frontend.
+
+b. Sound Effects
+Include sound effects for correct and incorrect answers.
+
+Use royalty-free sounds stored in the sounds/ folder.
+
+c. Timer Implementation
+Implement a 20-second timer for each question using CSS animations and JavaScript.
+
+Handle timeout events gracefully (e.g., mark the question as incorrect).
+
+d. Responsive Design
+Ensure the game is fully responsive and works on both desktop and mobile devices.
+
+Use media queries in CSS to adjust the layout for smaller screens.
+
+e. Character Selection
+Allow users to select a character (e.g., 🐶, 🐱) to represent them during the quiz.
+
+Store the selected character in a variable and display it during the quiz.
+
+f. Error Handling
+Handle errors gracefully (e.g., API failures, invalid user input).
+
+Display user-friendly error messages.
+
+g. Score Tracking
+Track the user's score throughout the quiz.
+
+Display the final score at the end of the quiz.
+
+h. Restart Option
+Allow users to restart the quiz or choose a new topic after completing the game.
+
+4. Submission Details
+Game Choice: Quiz Game.
+
+Pseudocode: Provided above.
+
+Additional Planning Requirements: Listed above, including API integration, sound effects, timer implementation, responsive design, character selection, error handling, score tracking, and restart options.
