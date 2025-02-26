@@ -215,6 +215,7 @@ h1 {
   flex: 1; 
   cursor: pointer;
   height: 40px;
+  width: 0.4rem;
 }
 #topic-input:hover {
   border-color: #f2580b;
