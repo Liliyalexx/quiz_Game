@@ -20,7 +20,7 @@ body {
   max-width: 600px;
   margin: 20px auto;
   border-radius: 10px;
-  padding: 30px;
+  padding: 20px;
   border: 2px solid #a8ce41;
 }
 
@@ -28,19 +28,20 @@ body {
   color: rgb(215, 104, 13);
   font-weight: 600;
   border-bottom: 1px solid orange;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   text-align: center;
   display: flex; 
-  flex-direction: column; 
-  align-items: center;
+  text-align: center;
+  font-size: 1.5rem; 
+  
 }
 
 .quiz {
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 .quiz h2 {
-  font-size: 18px;
+  font-size:1.2rem;
   color: rgb(215, 104, 13);
   font-weight: 600;
   text-align: center;
@@ -56,8 +57,8 @@ body {
   min-width: 44px; 
   min-height: 44px; 
   border: 1px solid #b75d08;
-  padding: 10px 20px;
-  margin: 10px 0;
+  padding: 10px;
+  margin: 8px 0;
   text-align: left;
   border-radius: 4px;
   cursor: pointer;
@@ -77,10 +78,11 @@ body {
   background: #d87c04;
   color: #fff;
   font-weight: 500;
-  width: 150px;
+  width: 100%;
+  max-width: 150px;
   border: 0px;
   padding: 10px;
-  margin: 20px auto 0;
+  margin: 15px auto 0;
   border-radius: 4px;
   cursor: pointer;
   display: none;
@@ -101,13 +103,13 @@ body {
   position: relative;
   border-radius: 5px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .character {
   border: none;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 215px;
   background-color: #d87c04;
   position: absolute;
   top: 0.5px;
@@ -129,58 +131,49 @@ body {
 #character-selection {
   border: none;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .animal-options {
   border: none;
-  border:yellow;
-  outline: yellow;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin: 20px 0;
-  min-width: 44px; 
-  min-height: 44px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+  gap: 10px;
+  margin: 15px 0;
+ flex-wrap: wrap;
 }
 
 .animal-option {
   border: none;
-  border: yellow;
-  outline: yellow;
+  outline: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1rem; 
 }
 
 .animal-option img {
   border: none; 
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   object-fit: cover;
   transition: transform 0.1s ease, box-shadow 0.1s ease; 
 }
 
 .animal-option img:hover {
-  border: none;
-  transform: scale(2,2); 
-  box-shadow: 0 0 10px rgba(230, 219, 14, 0.3); 
-  border: #a8ce41;
+  transform: scale(1.5, 1.5); 
+  box-shadow: 10 10 100px rgba(232, 232, 228, 0.3);
 }
 
 #start-quiz {
   background: #d87c04;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px ;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1rem;
   width: 100%; /* Full width on mobile */
   max-width: 200px; /* Limit width on larger screens */
-  margin: 15px auto; /* Center the button */
+  margin: 10px auto; /* Center the button */
   display: block;
 }
 
@@ -190,7 +183,6 @@ body {
 }
 
 .animal-option.selected {
-  border: none;
   color: #dde997;
   background-color: #ddee99;
 }
@@ -199,7 +191,7 @@ h1 {
   color: #4b0404;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 #quiz-controls {
@@ -207,23 +199,30 @@ h1 {
   margin: 20px 0;
 }
 
+
 #topic-input {
-  padding: 10px;
-  font-size: 16px;
+  padding: 8px; 
+  font-size: 1rem; 
   border: 2px solid #d87c04;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 8px;
+  width: 100%;
+  max-width: 200px; 
 }
+
 
 #generate-question-btn {
   background: #d87c04;
   color: #fff;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 8px 16px; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem; 
+  width: 100%;
+  max-width: 200px;
+  margin-top: 10px; 
 }
 
 #generate-question-btn:hover {
@@ -231,20 +230,48 @@ h1 {
 }
 
 .quiz {
-  margin-bottom: 20px;
+  margin-bottom:15px;
 }
 #mute-btn {
-  position: fixed; /* Fixed position so it stays in place */
-  top: 20px; /* Distance from the top */
-  right: 20px; /* Distance from the right */
+  position: fixed;
+  top: 10px; /* Adjusted for mobile */
+  right: 10px; /* Adjusted for mobile */
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem; /* Smaller font for mobile */
   cursor: pointer;
-  color: #d87c04; /* Match your theme color */
-  z-index: 1000; /* Ensure it's above other elements */
+  color: #d87c04;
+  z-index: 1000;
 }
 
 #mute-btn:hover {
   color: #f2de45; /* Change color on hover */
+}
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .board {
+    padding: 15px; 
+  }
+
+  .board h1 {
+    font-size: 1.3rem; 
+  }
+
+  .quiz h2 {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 0.9rem; 
+    padding: 8px; 
+  }
+
+  .animal-option img {
+    height: 70px; 
+    width: 70px;
+  }
+
+  #start-quiz, #generate-question-btn {
+    font-size: 0.9rem;
+  }
 }
