@@ -25,6 +25,7 @@ const characterElement = document.querySelector(".character");
 const topicInput = document.getElementById("topic-input");
 const generateQuestionButton = document.getElementById("generate-question-btn");
 const backgroundMusic = document.getElementById("background-music"); // Background music
+const muteButton = document.getElementById("mute-btn");
 
 let currentQuestionIndex = 0;
 let questions = []; // Store AI-generated questions
@@ -230,7 +231,15 @@ function handleNextButton() {
         showScore();
     }
 }
-
+function toggleMute(){
+    if(backgroundMusic.muted){
+        backgroundMusic.muted = false;
+        muteButton.textContent = '🔊';
+    }else {
+        backgroundMusic.muted = true;
+        muteButton.textContent = "🔇"
+    }
+}
 /*----------------------------- Event Listeners -----------------------------*/
 // Event Listener for Start Quiz Button
 startQuizButton.addEventListener("click", () => {
@@ -275,7 +284,7 @@ function startBackgroundMusic() {
   window.addEventListener("load", () => {
     startBackgroundMusic();
   });
-  
+  muteButton.addEventListener('click', toggleMute);
   // Allow music to start on user interaction (e.g., click)
   document.addEventListener("click", () => {
     if (backgroundMusic.paused) {
