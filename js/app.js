@@ -232,8 +232,6 @@ function handleNextButton() {
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
-
-
 // Event Listener for Start Quiz Button
 startQuizButton.addEventListener("click", () => {
     board.style.display = "block";
@@ -252,6 +250,13 @@ nextButton.addEventListener("click", () => {
     } else {
         startQuiz();
     }
+});
+
+generateQuestionButton.addEventListener("click", ()=>{
+    board.style.display = "block";
+    characterElement.textContent = selectedCharacter;
+    generateQuestionButton.style.display = "none";
+    startQuiz
 });
 
 // Background Music Autoplay Handling
@@ -283,10 +288,4 @@ function startBackgroundMusic() {
 generateQuestionButton.addEventListener("click", generateAndAddQuestions);
 
 
-// Event Listener for Start Quiz Button
-startQuizButton.addEventListener("click", () => {
-    board.style.display = "block";
-    characterElement.textContent = selectedCharacter;
-    // Start the quiz
-    startQuiz();
-});
+
