@@ -123,6 +123,7 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
+    fetchQuestions()
     showQuestion();
 }
 

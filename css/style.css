@@ -225,12 +225,12 @@ h1 {
   display: flex;
   background: #d87c04;
   color: #fff;
-  font-weight: 500;
+  font-weight: 400;
   padding: 10px 20px; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.9rem; 
+  font-size: 0.8rem; 
   width:40%;
   max-width: 200px;
   margin-top: 0px; 
