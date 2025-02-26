@@ -21,10 +21,11 @@ const characterSelection = document.getElementById("character-selection");
 const animalOptions = document.querySelectorAll(".animal-option");
 const startQuizButton = document.getElementById("start-quiz");
 const board = document.querySelector(".board");
-const characterElement = document.querySelector(".character");
 const topicInput = document.getElementById("topic-input");
 const generateQuestionButton = document.getElementById("generate-question-btn");
 const backgroundMusic = document.getElementById("background-music"); // Background music
+const characterElement = document.querySelector(".character"); // Timer character
+const quizControls = document.getElementById("quiz-controls"); 
 
 let currentQuestionIndex = 0;
 let questions = []; // Store AI-generated questions
@@ -118,12 +119,24 @@ function startQuiz() {
     if (questions.length === 0) {
         showMessage("No questions available. Please generate questions first.");
         return;
+        
     }
+     // Hide the "Start Quiz" button, topic input, and "Generate Question" button
+     startQuizButton.style.display = "none";
+     topicInput.style.display = "none";
+     generateQuestionButton.style.display = "none";
+
+     // Show the quiz board
+    board.style.display = "block";
+    nextButton.style.display = "block";
+
+    // Reset quiz state
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
-    backgroundMusic.play(); // Play joyful music
+ 
     showQuestion();
+    
 }
 
 function showQuestion() {
@@ -163,7 +176,7 @@ function startTimer() {
 
     timer = setTimeout(() => {
         handleTimeOut();
-    }, 20000); // 20 seconds timer
+    }, 2000); // 20 seconds timer
 }
 
 function handleTimeOut() {
@@ -172,6 +185,13 @@ function handleTimeOut() {
         disableAllButtons();
         nextButton.style.display = "block";
     }
+}
+
+// Function to disable all answer buttons
+function disableAllButtons() {
+    Array.from(answerButtons.children).forEach(button => {
+        button.disabled = true;
+    });
 }
 
 function resetState() {
@@ -220,7 +240,11 @@ function showScore() {
     questionElement.style.textAlign = "center"; 
     nextButton.innerHTML = "Play Again?";
     nextButton.style.display = "block";
-    backgroundMusic.pause(); // Pause joyful music
+    // backgroundMusic.pause(); // Pause joyful music
+    // Reset the UI to its initial state
+    document.getElementById("quiz-controls").style.display = "block";
+    document.getElementById("start-quiz").style.display = "block";
+    board.style.display = "none";
 }
 
 function handleNextButton() {
@@ -237,8 +261,15 @@ nextButton.addEventListener("click", () => {
     if (currentQuestionIndex < questions.length) {
         handleNextButton();
     } else {
-        startQuiz();
+        // Reset the quiz
+        questions = []; // Clear the questions array
+        startQuiz(); // Restart the quiz
     }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    backgroundMusic.play(); // Start background music when the page loads
 });
 
 // Event Listeners for Animal Selection
@@ -250,6 +281,7 @@ animalOptions.forEach(option => {
         option.classList.add("selected");
         // Update the selected character
         selectedCharacter = option.getAttribute("data-emoji");
+        characterElement.textContent = selectedCharacter;
     });
 });
 
@@ -258,8 +290,12 @@ generateQuestionButton.addEventListener("click", generateAndAddQuestions);
 
 // Event Listener for Start Quiz Button
 startQuizButton.addEventListener("click", () => {
-    board.style.display = "block";
-    characterElement.textContent = selectedCharacter;
-    // Start the quiz
     startQuiz();
+    board.style.display = "block";
+    character.textContent = selectedCharacter;
+    startTimer();
+    // Start the quiz
+    backgroundMusic.play()
+   
+    
 });
