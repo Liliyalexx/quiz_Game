@@ -152,6 +152,7 @@ body{
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
+  margin-left: 190px;
 }
 
 #start-quiz:hover {
