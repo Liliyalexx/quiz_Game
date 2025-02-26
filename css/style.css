@@ -199,30 +199,44 @@ h1 {
   margin: 20px 0;
 }
 
-
-#topic-input {
-  padding: 8px; 
-  font-size: 1rem; 
-  border: 2px solid #d87c04;
-  border-radius: 5px;
-  margin-right: 8px;
-  width: 100%;
-  max-width: 200px; 
+.input-group {
+  display: flex; 
+  align-items: center;
+  gap: 10px;
 }
 
+#topic-input {
+  padding: 5px;
+  font-size: 16px;
+  border: 2px solid #d87c04;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #6d3205;
+  flex: 1; 
+  cursor: pointer;
+  height: 40px;
+}
+#topic-input:hover {
+  border-color: #f2de45;
+}
 
 #generate-question-btn {
+  display: flex;
   background: #d87c04;
   color: #fff;
   font-weight: 500;
-  padding: 8px 16px; 
+  padding: 10px 20px; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem; 
-  width: 100%;
+  width:40%;
   max-width: 200px;
-  margin-top: 10px; 
+  margin-top: 0px; 
+  white-space: nowrap;
+  height: 40px; 
+  align-items: center;
+  justify-content: center;
 }
 
 #generate-question-btn:hover {
