@@ -45,20 +45,20 @@ let selectedCharacter = "🐶";
 let isFetching = false; 
 
 /*-------------------------------- Helper Functions --------------------------------*/
-// Display a message in the message container
+
 function showMessage(message) {
     messageContainer.textContent = message;
     setTimeout(() => {
-        messageContainer.textContent = ""; // Clear the message after 3 seconds
+        messageContainer.textContent = ""; 
     }, 2000);
 }
 
-// Helper function to get the category ID from the category name
+
 function getCategoryId(category) {
     return categoryMap[category] || 9; 
 }
 
-// Shuffle an array (used for randomizing answers)
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -67,19 +67,19 @@ function shuffleArray(array) {
     return array;
 }
 
-// Play a "ding" sound for correct answers
+
 function dingSound() {
     let ding = new Audio('sounds/bright-notifications-151766.mp3');
     ding.play();
 }
 
-// Play a "wrong" sound for incorrect answers
+
 function wrongSound() {
     let wrong = new Audio('sounds/wrong-answer-21-199825.mp3');
     wrong.play();
 }
 
-// Toggle background music mute state
+
 function toggleMute() {
     if (backgroundMusic.muted) {
         backgroundMusic.muted = false;
@@ -92,7 +92,7 @@ function toggleMute() {
 
 /*-------------------------------- Core Quiz Functions --------------------------------*/
 
-// Fetch AI-generated questions from the API
+
 async function fetchQuestions(topic) {
     try {
         const category = topicToCategory[topic];
@@ -125,7 +125,6 @@ async function fetchQuestions(topic) {
     }
 }
 
-// Generate 10 new questions and start the quiz
 async function generateAndAddQuestions() {
     const topic = topicInput.value.trim();
     if (!topic) {
@@ -141,7 +140,6 @@ async function generateAndAddQuestions() {
     }, 5000); // 5-second delay
 }
 
-// Start the quiz
 function startQuiz() {
     if (questions.length === 0) {
         showMessage("No questions available. Please generate questions first.");
@@ -150,19 +148,18 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
-    // Hide the result message
+    e
   const resultMessage = document.getElementById("result-message");
   resultMessage.style.display = "none";
 
-  // Hide the Generate Question button
+
   generateQuestionButton.style.display = "none";
 
-  // Hide the main page and show the quiz board
+
   nextButton.style.display = "none"; 
     showQuestion();
 }
 
-// Display the current question
 function showQuestion() {
     resetState();
     startTimer();
@@ -183,7 +180,6 @@ function showQuestion() {
     });
 }
 
-// Handle user answer selection
 function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
@@ -204,7 +200,6 @@ function selectAnswer(e) {
     nextButton.style.display = "block";
 }
 
-// Handle the "Next" button click
 function handleNextButton() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
@@ -215,7 +210,6 @@ function handleNextButton() {
     }
 }
 
-// Show the final score
 function showScore() {
     resetState();
     let userScore = `You scored ${score} out of ${questions.length}.`;
@@ -225,7 +219,6 @@ function showScore() {
     nextButton.style.display = "block";
     backgroundMusic.pause(); 
 
-// Determine if the user won or lost
 const resultMessage = document.getElementById("result-message");
 resultMessage.style.display = "block"; 
 
@@ -258,7 +251,6 @@ function resetGame() {
 
 /*-------------------------------- Timer Functions --------------------------------*/
 
-// Start the timer for the current question
 function startTimer() {
     character.style.animation = 'none';
     void character.offsetWidth; 
@@ -268,8 +260,6 @@ function startTimer() {
         handleTimeOut();
     }, 20000); 
 }
-
-// Handle timer timeout
 function handleTimeOut() {
     if (questions.length > 0) {
         wrongSound();
@@ -277,8 +267,6 @@ function handleTimeOut() {
         nextButton.style.display = "block";
     }
 }
-
-// Reset the timer and UI state
 function resetState() {
     clearTimeout(timer);
     character.style.animation = 'none';
@@ -287,7 +275,6 @@ function resetState() {
         answerButtons.removeChild(answerButtons.firstChild);
     }
 }
-// Background Music Autoplay Handling
 function startBackgroundMusic() {
     backgroundMusic.play()
       .then(() => {
@@ -300,7 +287,6 @@ function startBackgroundMusic() {
   }
 
 /*----------------------------- Event Listeners -----------------------------*/
-// Event Listeners for Animal Selection
 animalOptions.forEach(option => {
     option.addEventListener("click", () => {
         animalOptions.forEach(opt => opt.classList.remove("selected"));
@@ -309,7 +295,6 @@ animalOptions.forEach(option => {
         characterElement.textContent = selectedCharacter;
     });
 });
-// Start Quiz Button
 startQuizButton.addEventListener("click", () => {
     board.style.display = "block";
     characterElement.textContent = selectedCharacter;
@@ -318,7 +303,6 @@ startQuizButton.addEventListener("click", () => {
     startQuiz();
 });
 
-// Next Button
 nextButton.addEventListener("click", () => {
     if (currentQuestionIndex < questions.length) {
         handleNextButton();
@@ -328,13 +312,10 @@ nextButton.addEventListener("click", () => {
     }
 });
 
-// Generate Questions Button
 generateQuestionButton.addEventListener("click", generateAndAddQuestions);
 
-// Mute Button
 muteButton.addEventListener('click', toggleMute);
 
-// Background Music Autoplay Handling
 window.addEventListener("load", () => {
     startBackgroundMusic();
 });
