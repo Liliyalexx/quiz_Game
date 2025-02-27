@@ -2,7 +2,9 @@ Project Requirements for Quiz Game
 1. Game Choice
 Game Name: Quiz Game
 
-Description: The Quiz Game is an interactive web-based application where users can select a topic, answer AI-generated multiple-choice questions, and track their score. The game includes a timer, character selection, and sound effects for an engaging user experience.
+Description: The Quiz Game is an interactive web-based application where users can select a topic, 
+answer AI-generated multiple-choice questions, and track their score. 
+The game includes a timer, character selection, and sound effects for an engaging user experience.
 
 2. Pseudocode for Gameplay
 Below is the pseudocode for the overall gameplay logic:
@@ -92,6 +94,3 @@ Allow users to restart the quiz or choose a new topic after completing the game.
 4. Submission Details
 Game Choice: Quiz Game.
 
-Pseudocode: Provided above.
-
-Additional Planning Requirements: Listed above, including API integration, sound effects, timer implementation, responsive design, character selection, error handling, score tracking, and restart options.
