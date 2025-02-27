@@ -4,7 +4,7 @@
 
 [Quiz Game](https://liliyalexx.github.io/quiz_Game/)
 
-Welcome to the **Quiz Game** project! This is a fun and interactive quiz application that uses AI to generate questions based on user-selected topics. The game includes a timer, character selection, and sound effects to enhance the user experience.
+Welcome to the **Quiz Game** project! This is a fun and interactive quiz application that uses AI to generate questions based on user-selected topics. The game includes a timer, character selection for the time, background music, and sound effects to enhance the user experience.
 
 ---
 
@@ -38,11 +38,11 @@ The application is built using **HTML**, **CSS**, **JavaScript**, and **Node.js*
    - The application maps the topic to a category and fetches relevant questions.
 
 ### 2. **Character Selection**
-   - Users can choose a character (e.g., 🐶, 🐱) to represent them during the quiz.
+   - Users can choose a character (e.g., 🐶, 🐱) to represent timer during the quiz.
 
 ### 3. **AI-Generated Questions**
    - Questions are generated dynamically using the **OpenAI API**.
-   - Each question includes 4 options, with one correct answer.
+   - Each question includes 4 options with one correct answer and 2 options with true or false answers.
 
 ### 4. **Timer**
    - A 20-second timer is displayed for each question.
