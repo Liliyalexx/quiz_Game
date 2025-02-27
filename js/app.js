@@ -38,12 +38,11 @@ const muteButton = document.getElementById("mute-btn");
 
 /*-------------------------------- State Variables --------------------------------*/
 let currentQuestionIndex = 0;
-let questions = []; // Store AI-generated questions
+let questions = []; 
 let score = 0;
 let timer;
-let selectedCharacter = "🐶"; // Default character
-let isFetching = false; // Flag to prevent multiple simultaneous requests
-/*-------------------------------- Functions --------------------------------*/
+let selectedCharacter = "🐶"; 
+let isFetching = false; 
 
 /*-------------------------------- Helper Functions --------------------------------*/
 // Display a message in the message container
@@ -56,7 +55,7 @@ function showMessage(message) {
 
 // Helper function to get the category ID from the category name
 function getCategoryId(category) {
-    return categoryMap[category] || 9; // Default to General Knowledge if category not found
+    return categoryMap[category] || 9; 
 }
 
 // Shuffle an array (used for randomizing answers)
@@ -159,7 +158,7 @@ function startQuiz() {
   generateQuestionButton.style.display = "none";
 
   // Hide the main page and show the quiz board
-  nextButton.style.display = "none"; // Hide the "Next" button initially
+  nextButton.style.display = "none"; 
     showQuestion();
 }
 
@@ -251,7 +250,6 @@ function resetGame() {
     characterSelection.style.display = "block"; 
     document.getElementById("quiz-controls").style.display = "block"; 
     generateQuestionButton.style.display = "block"; 
-    //startQuizButton.style.display = "block"; 
     nextButton.style.display = "none";
   
     const resultMessage = document.getElementById("result-message");
@@ -263,12 +261,12 @@ function resetGame() {
 // Start the timer for the current question
 function startTimer() {
     character.style.animation = 'none';
-    void character.offsetWidth; // Force reflow to restart animation
+    void character.offsetWidth; 
     character.style.animation = 'moveCharacter 20s linear forwards';
 
     timer = setTimeout(() => {
         handleTimeOut();
-    }, 20000); // 20 seconds timer
+    }, 20000); 
 }
 
 // Handle timer timeout
