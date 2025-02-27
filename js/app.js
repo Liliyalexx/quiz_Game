@@ -100,7 +100,7 @@ async function fetchQuestions(topic) {
         if (!category) {
             throw new Error("Invalid topic selected.");
         }
-        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${getCategoryId(category)}`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=1&category=${getCategoryId(category)}`);
         if (!response.ok) {
             throw new Error(`Failed to fetch question: ${response.statusText}`);
         }
@@ -151,6 +151,15 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
+    // Hide the result message
+  const resultMessage = document.getElementById("result-message");
+  resultMessage.style.display = "none";
+
+  // Hide the Generate Question button
+  generateQuestionButton.style.display = "none";
+
+  // Hide the main page and show the quiz board
+  nextButton.style.display = "none"; // Hide the "Next" button initially
     showQuestion();
 }
 
@@ -215,9 +224,39 @@ function showScore() {
     questionElement.style.textAlign = "center";
     nextButton.innerHTML = "Play Again?";
     nextButton.style.display = "block";
-    backgroundMusic.pause(); // Pause joyful music
+    backgroundMusic.pause(); 
+
+// Determine if the user won or lost
+const resultMessage = document.getElementById("result-message");
+resultMessage.style.display = "block"; 
+
+if (score >= questions.length * 0.7) { 
+  resultMessage.textContent = "Congratulations! You won! 🎉";
+  resultMessage.style.color = "#08853e"; 
+} else { 
+  resultMessage.textContent = "Sorry, you lost. Try again! 😢";
+  resultMessage.style.color = "#c54205";
 }
 
+// Add event listener for the "Play Again" button
+nextButton.removeEventListener("click", handleNextButton);
+nextButton.addEventListener("click", resetGame); 
+}
+
+function resetGame() {
+    questions = [];
+    currentQuestionIndex = 0;
+    score = 0;
+
+    characterSelection.style.display = "block"; 
+    document.getElementById("quiz-controls").style.display = "block"; 
+    generateQuestionButton.style.display = "block"; 
+    //startQuizButton.style.display = "block"; 
+    nextButton.style.display = "none";
+  
+    const resultMessage = document.getElementById("result-message");
+    resultMessage.style.display = "none";
+  }
 
 /*-------------------------------- Timer Functions --------------------------------*/
 
@@ -261,6 +300,7 @@ function startBackgroundMusic() {
         showMessage("Click anywhere to start background music.");
       });
   }
+
 /*----------------------------- Event Listeners -----------------------------*/
 // Event Listeners for Animal Selection
 animalOptions.forEach(option => {

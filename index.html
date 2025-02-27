@@ -22,56 +22,73 @@
   <title>ThinkFast AI</title>
 </head>
 
-  <body>
-
-    <audio id="background-music" loop>
-      <source src="sounds/sorcerer-loop-251868.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-     <!-- Character Selection Screen -->
-     <div id="character-selection">
-        <h1>Choose Your Animal Character</h1>
-        <div class="animal-options">
-            <div class="animal-option" data-emoji="🐶">
-                <button class="animal"><img src="images/animals/dog-face.png" alt="dog"></button>
-            </div>
-            <div class="animal-option" data-emoji="🐱"> 
-              <button class="animal"><img src="images/animals/cat-face.png" alt="cat"></button>
-            </div>
-            <div class="animal-option" data-emoji="🐰"> 
-              <button class="animal"> <img src="images/animals/rabbit-face.png" alt="rabbit"></button>
-            </div>
-            <div class="animal-option" data-emoji="🐻"> 
-              <button class="animal"><img src="images/animals/bear-face.png" alt="bear"></button>
-            </div>
-            <div class="animal-option" data-emoji="🐼"> 
-              <button class="animal"><img src="images/animals/panda-face.png" alt="panda"></button>
-            </div>
-        </div>
-        <button id="start-quiz">Start Quiz</button>
-    </div>
-    <!-- Message Container -->
-    <div id="message-container" style="color: white; text-align: center; margin: 20px; font-size:30px;  font-family: 'Montserrat', sans-serif; font-weight: bold; font-style: italic; "></div>
-
-    <div class="board">
-      <h1>Quiz Game</h1>
-      <div class="timer-bar">
-        <div class="character"></div>
+<body>
+  <audio id="background-music" loop>
+    <source src="sounds/sorcerer-loop-251868.mp3" type="audio/mpeg">
+  </audio>
+  <button id="mute-btn">🔊</button>
+  <!-- Character Selection Screen -->
+  <div id="character-selection">
+    <h1>Choose Your Animal Character</h1>
+    <div class="animal-options">
+      <div class="animal-option" data-emoji="🐶">
+        <button class="animal"><img src="images/animals/dog-face.png" alt="dog"></button>
       </div>
-      <div class="quiz">
-        <h2 id="question">Questions</h2>
-        <div id="quiz-controls">
-            <input type="text" id="topic-input" placeholder="Enter a topic (e.g., AI, History)">
-            <button id="generate-question-btn">Generate Question</button>
-        </div>
-        <div id="answer">
-          <button class="btn">Answer 1</button>
-          <button class="btn">Answer 2</button>
-          <button class="btn">Answer 3</button>
-          <button class="btn">Answer 4</button>
-        </div>
-        <button id="next-btn">Next</button>
+      <div class="animal-option" data-emoji="🐱">
+        <button class="animal"><img src="images/animals/cat-face.png" alt="cat"></button>
+      </div>
+      <div class="animal-option" data-emoji="🐰">
+        <button class="animal"> <img src="images/animals/rabbit-face.png" alt="rabbit"></button>
+      </div>
+      <div class="animal-option" data-emoji="🐻">
+        <button class="animal"><img src="images/animals/bear-face.png" alt="bear"></button>
+      </div>
+      <div class="animal-option" data-emoji="🐼">
+        <button class="animal"><img src="images/animals/panda-face.png" alt="panda"></button>
       </div>
     </div>
-  </body>
+
+  </div>
+  <!-- Message Container -->
+  <div id="message-container"
+    style="color: #4b0404; text-align: center; margin: 20px; font-size:30px;  font-family: 'Montserrat', sans-serif; font-weight: bold; font-style: italic; ">
+  </div>
+
+  <div class="board">
+    <h1>Quiz Game</h1>
+    <div class="timer-bar">
+      <div class="character"></div>
+    </div>
+    <div class="quiz">
+      <h2 id="question">Questions</h2>
+      <div id="quiz-controls">
+        <div class="input-group">
+          <select id="topic-input" class="form-control">
+            <option value="" disabled selected>Select a topic</option>
+            <option value="AI">AI</option>
+            <option value="History">History</option>
+            <option value="Science">Science</option>
+            <option value="Geography">Geography</option>
+            <option value="Art">Art</option>
+            <option value="Sports">Sports</option>
+            <option value="Animals">Animals</option>
+            <option value="Biology">Biology</option>
+          </select>
+          <button id="generate-question-btn">Generate Question</button>
+        </div>
+      </div>
+      <div id="answer">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+       <!-- Win/Lose Message Container -->
+    <div id="result-message" style="display: none; text-align: center; margin: 20px; font-size: 24px; font-family: 'Montserrat', sans-serif; font-weight: bold;"></div>
+      <button id="next-btn" style="display: none;">Next</button>
+    </div>
+    <button id="start-quiz">Start Quiz</button>
+  </div>
+</body>
+
 </html>

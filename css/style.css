@@ -291,3 +291,20 @@ h1 {
     font-size: 0.9rem;
   }
 }
+
+#result-message {
+  display: none; 
+  text-align: center;
+  margin: 20px;
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+#result-message.win {
+  color: #08853e; 
+}
+
+#result-message.lose {
+  color: #c54205; 
+}
