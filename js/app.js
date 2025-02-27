@@ -265,13 +265,9 @@ function startBackgroundMusic() {
 // Event Listeners for Animal Selection
 animalOptions.forEach(option => {
     option.addEventListener("click", () => {
-        // Remove selected class from all options
         animalOptions.forEach(opt => opt.classList.remove("selected"));
-        // Add selected class to the clicked option
         option.classList.add("selected");
-        // Update the selected character
         selectedCharacter = option.getAttribute("data-emoji");
-        // Update the character in the timer
         characterElement.textContent = selectedCharacter;
     });
 });
