@@ -100,7 +100,7 @@ async function fetchQuestions(topic) {
         if (!category) {
             throw new Error("Invalid topic selected.");
         }
-        const response = await fetch(`https://opentdb.com/api.php?amount=1&category=${getCategoryId(category)}`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=10&category=${getCategoryId(category)}`);
         if (!response.ok) {
             throw new Error(`Failed to fetch question: ${response.statusText}`);
         }
