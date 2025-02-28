@@ -236,6 +236,7 @@ nextButton.addEventListener("click", resetGame);
 }
 
 function resetGame() {
+    window.location.reload();
     questions = [];
     currentQuestionIndex = 0;
     score = 0;
