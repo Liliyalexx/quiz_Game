@@ -3,8 +3,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Bubblegum Sans', cursive;
-  font-weight: bold;
+  font-family: 'Poppins sans';
+  font-weight: 1000;
   box-sizing: border-box;
 }
 
@@ -31,12 +31,18 @@ body {
   padding-bottom: 20px;
   text-align: center;
   display: flex; 
-  font-size: 1.5rem; 
+  font-size: 1.5rem bold; 
   justify-content: space-around;
-  font-family: 'Bubblegum Sans', cursive;
+  font-family: 'Poppins Sans';
   
 }
 
+h1 {
+  color: #4b0404;
+  font-family:'Poppins Sans';
+  font-weight: 1000;
+  font-size: 1.8rem;
+}
 .quiz {
   padding: 15px 0;
 }
@@ -255,7 +261,7 @@ h1 {
   right: 10px; /* Adjusted for mobile */
   background: none;
   border: none;
-  font-size: 3rem; /* Smaller font for mobile */
+  font-size: 1rem; /* Smaller font for mobile */
   cursor: pointer;
   color: #d87c04;
   z-index: 1000;
@@ -272,6 +278,7 @@ h1 {
 
   .board h1 {
     font-size: 1.3rem; 
+    
   }
 
   .quiz h2 {
