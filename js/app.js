@@ -148,7 +148,7 @@ function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
-    e
+    
   const resultMessage = document.getElementById("result-message");
   resultMessage.style.display = "none";
 
