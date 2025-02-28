@@ -92,7 +92,6 @@ function toggleMute() {
 
 /*-------------------------------- Core Quiz Functions --------------------------------*/
 
-
 async function fetchQuestions(topic) {
     try {
         const category = topicToCategory[topic];
